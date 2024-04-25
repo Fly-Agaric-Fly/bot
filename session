@@ -1,0 +1,92 @@
+import telebot
+from telebot import types
+import config
+
+bot = telebot.TeleBot("7069432527:AAG88-Epuj-_pmFBBiEP7_4H6bffG8VMf0M")
+
+
+@bot.message_handler(commands=['start'])
+def start(message):
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    btn1 = types.KeyboardButton("1")
+    btn2 = types.KeyboardButton("2")
+    btn3 = types.KeyboardButton("3")
+    markup.add(btn1, btn2, btn3)
+    bot.send_message(message.chat.id,
+                     text="Привет, {0.first_name}! Я специальный бот для подготовки к сессии по геометрии! Выбери номер задания:".format(
+                         message.from_user), reply_markup=markup)
+
+
+@bot.message_handler(content_types=['text'])
+def func(message):
+    if (message.text == "1"):
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        btn1 = types.KeyboardButton("𝐴1𝑂1C")
+        btn2 = types.KeyboardButton("C1O1C")
+        btn3 = types.KeyboardButton("D1OC")
+        back = types.KeyboardButton("Выбрать другую задачу")
+        markup.add(btn1, btn2, btn3, back)
+        bot.send_message(message.chat.id, text="В кубе 𝐴𝐵𝐶𝐷𝐴1𝐵1𝐶1𝐷1 𝐴𝐵𝐶𝐷𝐴1𝐵1𝐶1𝐷1 точка 𝑂 – точка пересечения диагоналей грани 𝐴𝐵𝐶𝐷, точка 𝑂1 – точка  пересечения диагоналей грани 𝐴1𝐵1𝐶1𝐷1. Какой угол равен линейному углу угла между плоскостями (𝐴1𝐵1𝐶1) и (𝐵𝐷𝐶1)?", reply_markup=markup)
+
+    elif (message.text == "2"):
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        btn1 = types.KeyboardButton("E1FE")
+        btn2 = types.KeyboardButton("E1OA")
+        btn3 = types.KeyboardButton("FE1E")
+        back = types.KeyboardButton("Выбрать другую задачу")
+        markup.add(btn1, btn2, btn3, back)
+        bot.send_message(message.chat.id,
+                         text="В правильной шестиугольной призме 𝐴𝐵𝐶𝐷𝐸𝐹𝐴1𝐵1𝐶1𝐷1𝐸1𝐹1точка 𝑂 – точка пересечения диагоналей грани 𝐴𝐵𝐶𝐷𝐸𝐹. Линейным углом угла между плоскостями (𝐴𝐵𝐶) и (𝐵𝐹𝐸1) является угол",
+                         reply_markup=markup)
+
+    elif (message.text == "3"):
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        btn1 = types.KeyboardButton("F1A1E1")
+        btn2 = types.KeyboardButton("F1A1B1")
+        btn3 = types.KeyboardButton("A1B1D1")
+        back = types.KeyboardButton("Выбрать другую задачу")
+        markup.add(btn1, btn2, btn3, back)
+        bot.send_message(message.chat.id,
+                         text="Какой из указанных ниже углов в правильной шестиугольной призме 𝐴𝐵𝐶𝐷𝐸𝐹𝐴1𝐵1𝐶1𝐷1𝐸1𝐹1 равен линейному углу угла между плоскостями (𝐴𝐹𝐹1) и (𝐵𝐷𝐷1)?",
+                         reply_markup=markup)
+
+    elif (message.text == "𝐴1𝑂1C"):
+        bot.send_message(message.chat.id, "Подумай еще(")
+
+    elif (message.text == "C1O1C"):
+        bot.send_message(message.chat.id, "Подумай еще(")
+
+    elif (message.text == "D1OC"):
+        bot.send_message(message.chat.id, "Правильный ответ!")
+
+    elif (message.text == "E1FE"):
+        bot.send_message(message.chat.id, "Подумай еще(")
+
+    elif (message.text == "FE1E"):
+        bot.send_message(message.chat.id, "Подумай еще(")
+
+    elif (message.text == "E1OA"):
+        bot.send_message(message.chat.id, "Правильный ответ!")
+
+    elif (message.text == "A1B1D1"):
+        bot.send_message(message.chat.id, "Подумай еще(")
+
+    elif (message.text == "F1A1E1"):
+        bot.send_message(message.chat.id, "Подумай еще(")
+
+    elif (message.text == "F1A1B1"):
+        bot.send_message(message.chat.id, "Правильный ответ!")
+
+    elif (message.text == "Выбрать другую задачу"):
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button1 = types.KeyboardButton("1")
+        button2 = types.KeyboardButton("2")
+        button3 = types.KeyboardButton("3")
+        markup.add(button1, button2, button3)
+        bot.send_message(message.chat.id, text="Выберите другую задачу", reply_markup=markup)
+
+    else:
+        bot.send_message(message.chat.id, text="На такую комманду я не запрограммирован..")
+
+
+bot.polling(none_stop=True)
